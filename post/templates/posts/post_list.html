@@ -1,0 +1,28 @@
+{% extends 'posts/post_base.html' %}
+
+{% block title %} List of blogs {% endblock title %}
+
+{% block postblock %}
+
+
+{% if author %}
+<h1>Posts by the {{ author.get_full_name }}</h1>
+{% endif %}
+
+{% for obj in object_list %}
+<div class="card">
+    <div class="card-author">
+        <a href="{% url 'user-post-list' username=obj.author.username %}">{{ obj.author.get_full_name }}</a>
+    </div>
+    <div class="card-title">
+        <a href="{% url 'post-detail' obj.pk %}">{{ obj.title }}</a>
+    </div>
+    <div class="card-text">{{ obj.text|truncatechars:"200" }}</div>
+    <div class="card-footer">
+        <span class="card-date">{{ obj.published_at|date:"d M" }}</span>
+        <a class="card-button" href="{% url 'post-detail' obj.pk %}">читать</a>
+    </div>
+</div>
+<hr class="line">
+{% endfor %}
+{% endblock postblock %}

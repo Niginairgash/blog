@@ -1,0 +1,12 @@
+{% extends 'posts/post_base.html' %}
+
+{% block title %}{{ object.title }}{% endblock title %}
+
+{% block postblock %}
+    <h1 class="post-title">{{ object.title }}</h1>
+    <div class="post-meta">
+        <span>{{ object.author.get_full_name|title }}</span>
+        <span>{{ object.published_at }}</span>
+    </div>
+    <div class="post-text">{{ object.text|linebreaks }}</div>
+{% endblock postblock %}

@@ -1,0 +1,11 @@
+{% extends 'posts/post_base.html' %}
+{% block title %} List of block {% endblock title %}
+{% block search %}
+<input type="text" name="search" />
+<input type="submit" value="Поиск" />
+{% for obj in object_list %}
+
+{% endfor %}
+
+
+{% endblock search %}
