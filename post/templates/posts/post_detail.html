@@ -4,6 +4,10 @@
 
 {% block postblock %}
     <h1 class="post-title">{{ object.title }}</h1>
+    <div class="post-main-image-container">
+        <img class="post-main-image" src="{{ object.main_image.url }}"
+         alt="{{ object.title }}">
+    </div>
     <div class="post-meta">
         <span>{{ object.author.get_full_name|title }}</span>
         <span>{{ object.published_at }}</span>
