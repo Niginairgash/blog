@@ -44,5 +44,17 @@ class SearchListView(ListView):
     def get_queryset(self):
         qs = Post.objects.prefetch_related("tags").filter(title__contains=self.request.GET.get("search"),
                                  is_draft=False)
+        search = self.request.GET.get("search")
+        if search:
+            qs = qs.filter(title__icontains=search)
         return qs
 
+    def get_context_data(self, **kwargs):
+        context = super.get_context_data(**kwargs)
+        context["search"] =self.request.GET.get("search", "")
+        return context
+
+
+    # M Model
+    # V Template
+    # C view
